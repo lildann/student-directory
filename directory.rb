@@ -12,21 +12,6 @@ students = [
   {name: "Norman Bates", cohort: :november}
 ]
 
-def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
-end
-
-def print(students)
-  students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort].capitalize} cohort)"
-  end
-end
-
-def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
-end
-
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -43,7 +28,23 @@ def input_students
   students
 end
 
-students = input_students
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
+end
+
+def print(students)
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort].capitalize} cohort)"
+  end
+end
+
+def print_footer(students)
+  puts "Overall, we have #{students.count} great students"
+end
+
+students = input_students # stating the argument for the methods
+# nothing happens until we call the methods
 print_header
 print(students)
 print_footer(students)

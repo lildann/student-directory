@@ -19,7 +19,9 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    puts "Please enter the height of #{name} in cm"
+    height = gets.chomp
+    students << {name: name, cohort: :november, height: height }
     puts "Now we have #{students.count} student(s)"
     # get another name from the user
     name = gets.chomp
@@ -33,13 +35,26 @@ def print_header
   puts "-------------"
 end
 
+# def print(students)
+#   search_by_initial = "f"
+#   students.each_with_index do |student, index|
+#     if student[:name].chr == search_by_initial.upcase && student[:name].length < 12
+#       puts "#{index+1}. #{student[:name]} is #{student[:height]} tall (#{student[:cohort].capitalize} cohort)"
+#     end
+#   end
+# end
+
 def print(students)
-  students.each_with_index do |student, index|
-    if student[:name].chr == "f".upcase && student[:name].length < 12
-      puts "#{index+1}. #{student[:name]} (#{student[:cohort].capitalize} cohort)"
+  search_by_initial = "f"
+  index = 0
+  while index < students.length do
+    if students[index][:name].chr == search_by_initial.upcase && students[index][:name].length < 12
+      puts "#{index+1}. #{students[index][:name]} is #{students[index][:height]} tall (#{students[index][:cohort].capitalize} cohort)"
     end
+  index += 1
   end
 end
+
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"

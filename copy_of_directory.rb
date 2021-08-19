@@ -31,8 +31,8 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The Students of Villains Academy".center(50, " * ")
+  puts "-------------".center(50)
 end
 
 # def print(students)
@@ -44,20 +44,20 @@ end
 #   end
 # end
 
+# print method using while loop rather than .each method
 def print(students)
   search_by_initial = "f"
   index = 0
   while index < students.length do
     if students[index][:name].chr == search_by_initial.upcase && students[index][:name].length < 12
-      puts "#{index+1}. #{students[index][:name]} is #{students[index][:height]} tall (#{students[index][:cohort].capitalize} cohort)"
+      puts "#{index+1}. #{students[index][:name]} is #{students[index][:height]} cm tall (#{students[index][:cohort].capitalize} cohort)".center(50)
     end
   index += 1
   end
 end
 
-
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(50)
 end
 
 students = input_students # stating the argument for the methods

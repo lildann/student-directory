@@ -1,26 +1,12 @@
-students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november},
-  {name: "Darth Vader", cohort: :november},
-  {name: "Nurse Ratched", cohort: :november},
-  {name: "Michael Corleone", cohort: :november},
-  {name: "Alex DeLarge", cohort: :november},
-  {name: "The Wicked Witch of the West", cohort: :november},
-  {name: "Terminator", cohort: :november},
-  {name: "Freddy Krueger", cohort: :november},
-  {name: "The Joker", cohort: :november},
-  {name: "Joffrey Baratheon", cohort: :november},
-  {name: "Norman Bates", cohort: :november}
-]
-
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   students = []
-  name = gets.chomp
+  name = gets.chop
   # while the name is not empty, repeat this code
   while !name.empty? do
     puts "Please enter #{name}'s cohort"
-    cohort = gets.chomp.to_sym
+    cohort = gets.chop.to_sym
     cohort = "Uknown" if cohort.empty? 
     students << {name: name, cohort: cohort}
     if students.count == 1
@@ -29,7 +15,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     # get another name from the user
-    name = gets.chomp
+    name = gets.chop
   end
   # return the array of students
   students
@@ -40,13 +26,20 @@ def print_header
   puts "-------------".center(50)
 end
 
-# print method using while loop rather than .each method
 def print(students)
-  index = 0
-  while index < students.length do
-    puts "#{index+1}. #{students[index][:name]} (#{students[index][:cohort].capitalize} cohort)".center(50)
-  index += 1
+  students_by_cohort = {}
+  students.each do |student|
+    cohort = student[:cohort]
+    name = student[:name]
+    if students_by_cohort[cohort] == nil
+      students_by_cohort[cohort] = [name]
+    else
+      students_by_cohort[cohort].push(name)
+    end
   end
+    students_by_cohort.each do |cohort, name|
+      puts "The following students are in the #{cohort} cohort: #{students_by_cohort[cohort]}"
+    end
 end
 
 def print_footer(students)
@@ -54,7 +47,6 @@ def print_footer(students)
 end
 
 students = input_students # stating the argument for the methods
-# nothing happens until we call the methods
 print_header
 print(students)
 print_footer(students)

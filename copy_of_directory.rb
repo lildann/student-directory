@@ -22,7 +22,7 @@ def input_students
 end
 
 def print_header
-  puts "The Students of Villains Academy".center(50, " * ")
+  puts "The Students of Makers Academy".center(50, " * ")
   puts "-------------".center(50)
 end
 

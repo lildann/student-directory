@@ -19,10 +19,15 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    puts "Please enter the height of #{name} in cm"
-    height = gets.chomp
-    students << {name: name, cohort: :november, height: height }
-    puts "Now we have #{students.count} student(s)"
+    puts "Please enter #{name}'s cohort"
+    cohort = gets.chomp.to_sym
+    cohort = "Uknown" if cohort.empty? 
+    students << {name: name, cohort: cohort}
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else 
+      puts "Now we have #{students.count} students"
+    end
     # get another name from the user
     name = gets.chomp
   end
@@ -35,23 +40,11 @@ def print_header
   puts "-------------".center(50)
 end
 
-# def print(students)
-#   search_by_initial = "f"
-#   students.each_with_index do |student, index|
-#     if student[:name].chr == search_by_initial.upcase && student[:name].length < 12
-#       puts "#{index+1}. #{student[:name]} is #{student[:height]} tall (#{student[:cohort].capitalize} cohort)"
-#     end
-#   end
-# end
-
 # print method using while loop rather than .each method
 def print(students)
-  search_by_initial = "f"
   index = 0
   while index < students.length do
-    if students[index][:name].chr == search_by_initial.upcase && students[index][:name].length < 12
-      puts "#{index+1}. #{students[index][:name]} is #{students[index][:height]} cm tall (#{students[index][:cohort].capitalize} cohort)".center(50)
-    end
+    puts "#{index+1}. #{students[index][:name]} (#{students[index][:cohort].capitalize} cohort)".center(50)
   index += 1
   end
 end

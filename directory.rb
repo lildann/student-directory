@@ -5,7 +5,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the list to students.csv"
   puts "4. Load the list from students.csv"
-  puts "9. Exit"
+  puts "5. Exit"
 end
 
 def interactive_menu
@@ -19,9 +19,9 @@ def process(selection)
   case selection
   when "1" then input_students 
   when "2" then show_students
-  when "3" then save_students
-  when "4" then load_students
-  when "9" then exit # this will cause the program to terminate
+  when "3" then save_students 
+  when "4" then load_students 
+  when "5" then exit # this will cause the program to terminate
   else
     puts "I don't know what you meant, try again"
   end
@@ -67,6 +67,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Students saved to file"
 end
 
 def load_students(filename= "students.csv") # method now reads the filename as an argument with a default value
@@ -74,7 +75,7 @@ def load_students(filename= "students.csv") # method now reads the filename as a
   file.readlines.each do |line| 
     name, cohort = line.chomp.split(",") # parallel assignment of an array (from .split method on a string)
     # chomp here discards the trailing new line character from the line
-      @students << {name: name, cohort: cohort.to_sym} # cohort from string .to_sym for consistency
+    @students << {name: name, cohort: cohort.to_sym} # cohort from string .to_sym for consistency
   end
   file.close
 end

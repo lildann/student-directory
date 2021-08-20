@@ -3,8 +3,8 @@
 def print_menu
   puts "Enter 1 to Input the students"
   puts "Enter 2 to Show the students"
-  puts "Enter 3 to Save the list to students.csv"
-  puts "Enter 4 to Load the list from students.csv"
+  puts "Enter 3 to Save the list to file"
+  puts "Enter 4 to Load the list from file"
   puts "Enter 5 to Exit"
 end
 
@@ -57,7 +57,12 @@ def print_footer
 end
 
 def save_students
-  file = File.open("students.csv", "w") # open the file for writing (w = write in file)
+  puts "What file should this be saved to?"
+  filename = STDIN.gets.chomp
+  if filename.empty?
+    filename = "students.csv"
+  end
+  file = File.open(filename, "w") # open the file for writing (w = write in file)
   @students.each do |student|
     student_data = [student[:name], student[:cohort]] 
     csv_line = student_data.join(",") 
@@ -68,6 +73,8 @@ def save_students
 end
 
 def load_students(filename = "students.csv") # method now reads the filename as an argument with a default value
+  puts "What file should this be loaded from?"
+  filename = STDIN.gets.chomp
   file = File.open(filename, "r") # r = read only
   file.readlines.each do |line| 
     name, cohort = line.chomp.split(",") 
